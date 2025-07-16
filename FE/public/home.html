@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Search</title>
+  <link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+<div id="avatar-container">
+  <h1 id="site-title" style="cursor: pointer;">IE103 Nhóm 7</h1>
+  <div id="user">
+    <img id="user-avatar" src="images/defaultava.jpg" alt="User Avatar">
+    <div id="user-name"style="font-size: 20px;">Loading...</div>
+  </div>
+</div>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const name = localStorage.getItem('name');
+  const username = localStorage.getItem('username');
+  const avatarUrl = localStorage.getItem('avatar');
+  const avatar = document.getElementById('user-avatar');
+  const nameDisplay = document.getElementById('user-name');
+
+  // Set avatar if exists and not 'undefined'
+  if (avatarUrl && avatarUrl !== 'undefined') {
+    avatar.src = avatarUrl;
+  }
+
+  // Set display name safely
+  if (name && name !== 'undefined' && name.trim() !== '') {
+    nameDisplay.textContent = name;
+  } else if (username && username !== 'undefined' && username.trim() !== '') {
+    nameDisplay.textContent = username;
+  } else {
+    nameDisplay.textContent = 'Guest';
+  }
+  const siteTitle = document.getElementById('site-title');
+  if (siteTitle) {
+    siteTitle.addEventListener('click', () => {
+      window.location.href = 'home.html'; // Chuyển hướng về home.html
+    });
+  }
+});
+
+  </script>
+
+<div class="container">
+  <form id="search-form">
+    <input type="text" id="search-input" placeholder="Nhập tên sách"/>
+    <button type="button" id="search-button">Tìm</button>
+  </form>
+  <br>
+  <div id="recommended-books" class="home-recommendations-container"> </div>
+</div>
+
+  <script src="script.js"></script> <!--script sẽ chạy và bỏ lên cái id recommended-books-->
+</body>
+</html>
+
+
